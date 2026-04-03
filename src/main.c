@@ -368,6 +368,9 @@ int main(int argc, char *argv[])
             exit(-5);
         }
 
+        int reuse = 1;
+        setsockopt(socket_fd, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse));
+
         server_addr.sin_family = AF_INET;
         server_addr.sin_addr.s_addr = INADDR_ANY;
         server_addr.sin_port = htons(args.port);

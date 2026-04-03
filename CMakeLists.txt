@@ -3,6 +3,10 @@ project(grblHAL-sim C)
 
 add_compile_definitions(F_CPU=16000000)
 #add_compile_definitions(SQUARING_ENABLED=1)
+add_compile_definitions(ATCI_ENABLE=1)
+add_compile_definitions(BOARD_FLEXI_HAL=1)
+add_compile_definitions(ADD_MY_PLUGIN=1)
+add_compile_definitions(MRBEAR_ENABLE=1)
 
 include(src/grbl/CMakeLists.txt)
 
@@ -48,8 +52,13 @@ add_executable(grblHAL_sim
     src/mcu.c
     src/serial.c
     src/grbl_interface.c
+    src/my_plugin.c
+    plugins/sienci-atci-plugin/sienci-atci-plugin.c
+    plugins/mrbear/mrbear.c
     ${platform_SRC}
 )
+
+target_include_directories(grblHAL_sim PRIVATE src)
 
 target_link_libraries(grblHAL_sim PRIVATE 
     m

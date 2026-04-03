@@ -505,6 +505,8 @@ bool driver_init ()
     hal.driver_cap.limits_pull_up = On;
     hal.driver_cap.probe_pull_up = On;
 
+#include "grbl/plugins_init.h"
+
     // no need to move version check before init - compiler will fail any signature mismatch for existing entries
     return hal.version == 10;
 }
